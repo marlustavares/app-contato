@@ -47,7 +47,7 @@
         active-class=""
       >
       <div
-        v-for="contato,index in $store.state.contatosgit"
+        v-for="contato,index in $store.state.contatos"
         :key="index"
       >
         <Contato 
