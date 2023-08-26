@@ -14,12 +14,14 @@
           </v-list-item-content>
 
           <v-list-item-action>
-            <v-btn
+            <!-- <v-btn
             icon
             @click.stop="handleRemoveContato(contato.id)"
             >
               <v-icon color="red  lighten-1">mdi-trash-can</v-icon>
             </v-btn>
+            -->
+            <ContatoMenu />   
           </v-list-item-action>
         </template>
       </v-list-item>
@@ -28,7 +30,11 @@
 </template>
 
 <script>
+import ContatoMenu from "./ContatoMenu.vue"
 export default {
+    components:{
+      ContatoMenu
+    },
     props:['contato'],
     methods:{
       handleRemoveContato(id){
