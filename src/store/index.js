@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import axios from "axios";
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -14,20 +16,29 @@ export default new Vuex.Store({
   },
   mutations: {
     addContato(state,cont){
-      if(cont[0] && cont[1] && cont[2]){
+      if(cont[0] && cont[1]){
         state.contatos.push({
           id: new Date().getTime(),
           nome:cont[0],
           numero:cont[1],
           email:cont[2],  
           selecionado : false
-       })
+       }),
+       axios.get("http://localhost:8080/contatos").then((res) => {
+          console.log(res.data)
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     },
     removeContato(state,id){
       state.contatos = state.contatos.filter(contato => contato.id !== id)
 
-    }    
+    },
+    editaContato(state,novoContato){
+      let contato = state.contatos.filter(contato => contato.id == novoContato.id)[0]
+      contato.nome = novoContato.nome
+    }   
   },
   actions: {
   },
